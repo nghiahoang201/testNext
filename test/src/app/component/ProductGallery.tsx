@@ -14,7 +14,10 @@ export default function ProductGallery({
   thumbnails,
   productName,
 }: ProductGalleryProps) {
-  const [currentImage, setCurrentImage] = useState(mainImage);
+  const imageFallBack = "https://www.mangobeds.com/images/image-fallback.jpg";
+  const [currentImage, setCurrentImage] = useState(
+    mainImage ? mainImage : imageFallBack
+  );
 
   const handleThumbnailClick = (imgSrc: string) => {
     setCurrentImage(imgSrc);
@@ -25,7 +28,7 @@ export default function ProductGallery({
       <div className="mb-4">
         <div className="relative rounded-lg overflow-hidden bg-gray-100 aspect-square">
           <Image
-            src={currentImage}
+            src={currentImage || imageFallBack}
             alt={productName}
             width={1000}
             height={660}
@@ -34,7 +37,7 @@ export default function ProductGallery({
         </div>
       </div>
       <div className="grid grid-cols-4 gap-2">
-        {thumbnails.map((thumbnail, index) => (
+        {thumbnails?.map((thumbnail, index) => (
           <div
             key={index}
             className={`rounded-lg overflow-hidden ${
@@ -45,7 +48,7 @@ export default function ProductGallery({
           >
             <Image
               onClick={() => handleThumbnailClick(thumbnail)}
-              src={thumbnail}
+              src={thumbnail || imageFallBack}
               alt={`${productName} thumbnail ${index + 1}`}
               width={300}
               height={360}

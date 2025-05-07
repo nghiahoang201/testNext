@@ -42,8 +42,8 @@ const products = [
     price: 111,
     reviewCount: 20,
     onSale: "10%",
-    originalPrice: "",
-    thumbnails: [1, 2, 3],
+    originalPrice: "1",
+    thumbnails: [],
   },
   {
     id: "2",
@@ -55,8 +55,8 @@ const products = [
     price: 11,
     reviewCount: 10,
     onSale: "10%",
-    originalPrice: "",
-    thumbnails: [1, 2, 4],
+    originalPrice: "2",
+    thumbnails: [],
   },
   {
     id: "3",
@@ -68,8 +68,8 @@ const products = [
     price: 99,
     reviewCount: 1,
     onSale: "10%",
-    originalPrice: "",
-    thumbnails: [1, 2, 3],
+    originalPrice: "3",
+    thumbnails: [],
   },
   {
     id: "4",
@@ -81,8 +81,8 @@ const products = [
     price: 200,
     reviewCount: 99,
     onSale: "10%",
-    originalPrice: "",
-    thumbnails: [1, 2, 4],
+    originalPrice: "4",
+    thumbnails: [],
   },
 ];
 
