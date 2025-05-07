@@ -117,33 +117,33 @@ export default function Product() {
           {/* Product Images */}
           <div className="lg:w-1/2 px-4">
             <ProductGallery
-              mainImage={product.imageUrl}
-              thumbnails={product.thumbnails}
-              productName={product.name}
+              mainImage={product?.imageUrl}
+              thumbnails={product?.thumbnails}
+              productName={product?.name}
             />
           </div>
 
           {/* Product Info */}
           <div className="lg:w-1/2 px-4">
             <div className="mb-4">
-              <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
+              <h1 className="text-3xl font-bold mb-2">{product?.name}</h1>
               <div className="flex items-center mb-4">
                 <div className="flex text-yellow-400 mr-2"></div>
                 <span className="text-gray-600 text-sm">
-                  {product.reviewCount} Reviews
+                  {product?.reviewCount} Reviews
                 </span>
               </div>
               <div className="mb-4">
-                <span className="text-2xl font-bold">${product.price}</span>
+                <span className="text-2xl font-bold">${product?.price}</span>
                 <span className="text-gray-500">/ unit</span>
-                {product.onSale && product.originalPrice && (
+                {product?.onSale && product?.originalPrice && (
                   <span className="text-gray-500 text-sm line-through ml-2">
-                    ${product.originalPrice}
+                    ${product?.originalPrice}
                   </span>
                 )}
               </div>
               <div className="text-gray-600 mb-6">
-                <p>{product.description}</p>
+                <p>{product?.description}</p>
                 <ul className="list-disc list-inside mt-4 space-y-2">
                   <li>Premium quality materials</li>
                   <li>Durable construction</li>
@@ -281,17 +281,17 @@ export default function Product() {
               <TabsTrigger value="description">Description</TabsTrigger>
               <TabsTrigger value="specifications">Specifications</TabsTrigger>
               <TabsTrigger value="reviews">
-                Reviews ({product.reviewCount})
+                Reviews ({product?.reviewCount})
               </TabsTrigger>
               <TabsTrigger value="faqs">FAQs</TabsTrigger>
             </TabsList>
             <TabsContent value="description" className="py-6">
               <p className="text-gray-600 mb-4">
-                Experience premium quality with our {product.name}. Designed for
-                comfort and durability, this product delivers exceptional
+                Experience premium quality with our {product?.name}. Designed
+                for comfort and durability, this product delivers exceptional
                 performance for all your needs.
               </p>
-              <p className="text-gray-600 mb-4">{product.description}</p>
+              <p className="text-gray-600 mb-4">{product?.description}</p>
               <p className="text-gray-600">
                 The ergonomic design provides comfort for extended use, while
                 the premium materials ensure durability and style. Connect
@@ -318,7 +318,7 @@ export default function Product() {
                 </div>
                 <div className="border-b border-gray-200 py-3">
                   <span className="font-medium">Model Number:</span>{" "}
-                  {product.id}XYZ
+                  {product?.id}XYZ
                 </div>
               </div>
             </TabsContent>
@@ -419,17 +419,17 @@ export default function Product() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products?.map((relatedProduct) => (
               <ProductCard
-                key={relatedProduct.id}
-                id={relatedProduct.id}
-                name={relatedProduct.name}
-                description={relatedProduct.description}
-                price={relatedProduct.price}
-                imageUrl={relatedProduct.imageUrl}
-                rating={relatedProduct.rating}
-                reviewCount={relatedProduct.reviewCount}
-                isNew={relatedProduct.isNew}
-                onSale={relatedProduct.onSale}
-                originalPrice={relatedProduct.originalPrice}
+                key={relatedProduct?.id}
+                id={relatedProduct?.id}
+                name={relatedProduct?.name}
+                description={relatedProduct?.description}
+                price={relatedProduct?.price}
+                imageUrl={relatedProduct?.imageUrl}
+                rating={relatedProduct?.rating}
+                reviewCount={relatedProduct?.reviewCount}
+                isNew={relatedProduct?.isNew}
+                onSale={relatedProduct?.onSale}
+                originalPrice={relatedProduct?.originalPrice}
               />
             ))}
           </div>
