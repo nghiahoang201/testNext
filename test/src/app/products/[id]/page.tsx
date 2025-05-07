@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 const products = [
   {
@@ -326,9 +327,11 @@ export default function Product() {
                 <div className="flex items-start">
                   <div className="mr-4">
                     <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
-                      <img
+                      <Image
                         src="https://randomuser.me/api/portraits/men/32.jpg"
                         alt="User"
+                        width={1000}
+                        height={660}
                       />
                     </div>
                   </div>
@@ -349,9 +352,11 @@ export default function Product() {
                 <div className="flex items-start">
                   <div className="mr-4">
                     <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
-                      <img
+                      <Image
                         src="https://randomuser.me/api/portraits/women/44.jpg"
                         alt="User"
+                        width={1000}
+                        height={660}
                       />
                     </div>
                   </div>
@@ -363,10 +368,10 @@ export default function Product() {
                       Verified Purchase • 1 month ago
                     </p>
                     <p className="text-gray-700">
-                      Very good product for the price. It's comfortable and
+                      {` Very good product for the price. It's comfortable and
                       durable. The only reason I'm not giving 5 stars is because
                       the color was slightly different than what was shown in
-                      the pictures.
+                      the pictures.`}
                     </p>
                   </div>
                 </div>
@@ -395,12 +400,12 @@ export default function Product() {
                 </div>
                 <div>
                   <h4 className="font-medium text-lg mb-2">
-                    Can I return this if I'm not satisfied?
+                    {`Can I return this if I'm not satisfied?`}
                   </h4>
                   <p className="text-gray-600">
-                    Absolutely! We offer a 30-day return policy on all our
+                    {`  Absolutely! We offer a 30-day return policy on all our
                     products. If you're not completely satisfied, you can return
-                    it for a full refund or exchange.
+                    it for a full refund or exchange.`}
                   </p>
                 </div>
               </div>

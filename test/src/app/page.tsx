@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "./component/ui/button";
 import CategoryCard from "./component/ui/CategoryCard";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const categories = [
   {
@@ -40,8 +41,8 @@ export default function Home() {
                 Discover Modern Essentials for Your Lifestyle
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Shop the latest trends with NextShop's curated collection of
-                premium products.
+                {` Shop the latest trends with NextShop's curated collection of
+                premium products.`}
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Button
@@ -61,7 +62,7 @@ export default function Home() {
               </div>
             </div>
             <div className="md:w-1/2">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
                 alt="Premium Products Showcase"
                 width={1000}
@@ -141,12 +142,12 @@ export default function Home() {
                 {/* <StarRating rating={5} size="lg" /> */}
               </div>
               <p className="text-gray-600 mb-4">
-                "The quality of the products exceeds my expectations. Fast
-                shipping and excellent customer service!"
+                {` "The quality of the products exceeds my expectations. Fast
+                shipping and excellent customer service!"`}
               </p>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gray-300 mr-3 overflow-hidden">
-                  <img
+                  <Image
                     src="https://randomuser.me/api/portraits/women/12.jpg"
                     alt="Customer"
                     width={1000}
@@ -165,12 +166,12 @@ export default function Home() {
                 {/* <StarRating rating={5} size="lg" /> */}
               </div>
               <p className="text-gray-600 mb-4">
-                "I love how easy it is to navigate the website and find exactly
-                what I'm looking for. Great selection of products!"
+                {` "I love how easy it is to navigate the website and find exactly
+                what I'm looking for. Great selection of products!"`}
               </p>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gray-300 mr-3 overflow-hidden">
-                  <img
+                  <Image
                     src="https://randomuser.me/api/portraits/men/32.jpg"
                     alt="Customer"
                     width={1000}
@@ -189,12 +190,12 @@ export default function Home() {
                 {/* <StarRating rating={4.5} size="lg" /> */}
               </div>
               <p className="text-gray-600 mb-4">
-                "The checkout process was smooth and hassle-free. My items
-                arrived earlier than expected and in perfect condition."
+                {` "The checkout process was smooth and hassle-free. My items
+                arrived earlier than expected and in perfect condition."`}
               </p>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gray-300 mr-3 overflow-hidden">
-                  <img
+                  <Image
                     src="https://randomuser.me/api/portraits/women/45.jpg"
                     alt="Customer"
                     width={1000}

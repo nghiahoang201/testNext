@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 interface ProductGalleryProps {
@@ -23,9 +24,11 @@ export default function ProductGallery({
     <div className="mb-8 lg:mb-0">
       <div className="mb-4">
         <div className="relative rounded-lg overflow-hidden bg-gray-100 aspect-square">
-          <img
+          <Image
             src={currentImage}
             alt={productName}
+            width={1000}
+            height={660}
             className="w-full h-full object-cover"
           />
         </div>
@@ -40,10 +43,12 @@ export default function ProductGallery({
                 : "border border-gray-200"
             } bg-gray-100 aspect-square`}
           >
-            <img
+            <Image
               onClick={() => handleThumbnailClick(thumbnail)}
               src={thumbnail}
               alt={`${productName} thumbnail ${index + 1}`}
+              width={300}
+              height={360}
               className="w-full h-full object-cover cursor-pointer"
             />
           </div>
