@@ -31,6 +31,12 @@ const sortedProducts = [
     description:
       "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
     price: 111,
+    reviewCount: 20,
+    onSale: true,
+    originalPrice: "1",
+    thumbnails: [],
+    isNew: true,
+    rating: "",
   },
   {
     id: "2",
@@ -40,6 +46,12 @@ const sortedProducts = [
     description:
       "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
     price: 11,
+    reviewCount: 10,
+    onSale: true,
+    originalPrice: "2",
+    thumbnails: [],
+    isNew: true,
+    rating: "",
   },
   {
     id: "3",
@@ -49,6 +61,12 @@ const sortedProducts = [
     description:
       "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
     price: 99,
+    reviewCount: 1,
+    onSale: true,
+    originalPrice: "3",
+    thumbnails: [],
+    isNew: true,
+    rating: "",
   },
   {
     id: "4",
@@ -58,6 +76,12 @@ const sortedProducts = [
     description:
       "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
     price: 200,
+    reviewCount: 99,
+    onSale: true,
+    originalPrice: "4",
+    thumbnails: [],
+    isNew: true,
+    rating: "",
   },
 ];
 

@@ -1,7 +1,7 @@
 "use client";
 
 import ProductCard from "@/app/component/ProductCard";
-import ProductGallery from "@/app/component/ProductGallery";
+import ProductGallery, { imageFallBack } from "@/app/component/ProductGallery";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -41,9 +41,11 @@ const products = [
       "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
     price: 111,
     reviewCount: 20,
-    onSale: "10%",
+    onSale: true,
     originalPrice: "1",
     thumbnails: [],
+    isNew: true,
+    rating: "",
   },
   {
     id: "2",
@@ -54,9 +56,11 @@ const products = [
       "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
     price: 11,
     reviewCount: 10,
-    onSale: "10%",
+    onSale: true,
     originalPrice: "2",
     thumbnails: [],
+    isNew: true,
+    rating: "",
   },
   {
     id: "3",
@@ -67,9 +71,11 @@ const products = [
       "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
     price: 99,
     reviewCount: 1,
-    onSale: "10%",
+    onSale: true,
     originalPrice: "3",
     thumbnails: [],
+    isNew: true,
+    rating: "",
   },
   {
     id: "4",
@@ -80,9 +86,11 @@ const products = [
       "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
     price: 200,
     reviewCount: 99,
-    onSale: "10%",
+    onSale: true,
     originalPrice: "4",
     thumbnails: [],
+    isNew: true,
+    rating: "",
   },
 ];
 
@@ -117,9 +125,9 @@ export default function Product() {
           {/* Product Images */}
           <div className="lg:w-1/2 px-4">
             <ProductGallery
-              mainImage={product?.imageUrl}
-              thumbnails={product?.thumbnails}
-              productName={product?.name}
+              mainImage={product?.imageUrl || imageFallBack}
+              thumbnails={product?.thumbnails || []}
+              productName={product?.name || ""}
             />
           </div>
 
@@ -160,35 +168,35 @@ export default function Product() {
               <div className="flex space-x-3">
                 <button
                   className={`w-8 h-8 rounded-full bg-black ${
-                    activeColor === "black"
+                    activeColor && activeColor === "black"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 ></button>
                 <button
                   className={`w-8 h-8 rounded-full bg-white ${
-                    activeColor === "white"
+                    activeColor && activeColor === "white"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 ></button>
                 <button
                   className={`w-8 h-8 rounded-full bg-gray-500 ${
-                    activeColor === "gray"
+                    activeColor && activeColor === "gray"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 ></button>
                 <button
                   className={`w-8 h-8 rounded-full bg-red-500 ${
-                    activeColor === "red"
+                    activeColor && activeColor === "red"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 ></button>
                 <button
                   className={`w-8 h-8 rounded-full bg-blue-500 ${
-                    activeColor === "blue"
+                    activeColor && activeColor === "blue"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}

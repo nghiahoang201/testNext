@@ -8,13 +8,14 @@ interface ProductGalleryProps {
   thumbnails: string[];
   productName: string;
 }
+export const imageFallBack =
+  "https://www.mangobeds.com/images/image-fallback.jpg";
 
 export default function ProductGallery({
   mainImage,
   thumbnails,
   productName,
 }: ProductGalleryProps) {
-  const imageFallBack = "https://www.mangobeds.com/images/image-fallback.jpg";
   const [currentImage, setCurrentImage] = useState(
     mainImage ? mainImage : imageFallBack
   );

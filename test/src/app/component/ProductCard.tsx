@@ -7,12 +7,12 @@ import { Badge } from "./ui/badge";
 import Image from "next/image";
 
 interface ProductCardProps {
-  id: number;
+  id: number | string;
   name: string;
   description: string;
-  price: string;
+  price: string | number;
   imageUrl: string;
-  rating: string;
+  rating: string | null;
   reviewCount: number;
   isNew?: boolean;
   onSale?: boolean;
