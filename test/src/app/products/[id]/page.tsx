@@ -27,80 +27,88 @@ import {
   ShoppingCart,
   Truck,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-
-const products = [
-  {
-    id: "1",
-    name: "Electronics",
-    imageUrl:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    description:
-      "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
-    price: 111,
-    reviewCount: 20,
-    onSale: true,
-    originalPrice: "1",
-    thumbnails: [],
-    isNew: true,
-    rating: "",
-  },
-  {
-    id: "2",
-    name: "Fashion",
-    imageUrl:
-      "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    description:
-      "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
-    price: 11,
-    reviewCount: 10,
-    onSale: true,
-    originalPrice: "2",
-    thumbnails: [],
-    isNew: true,
-    rating: "",
-  },
-  {
-    id: "3",
-    name: "Home & Decor",
-    imageUrl:
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    description:
-      "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
-    price: 99,
-    reviewCount: 1,
-    onSale: true,
-    originalPrice: "3",
-    thumbnails: [],
-    isNew: true,
-    rating: "",
-  },
-  {
-    id: "4",
-    name: "Accessories",
-    imageUrl:
-      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
-    description:
-      "Premium wireless headphones with high-quality sound, noise cancellation, and long battery life",
-    price: 200,
-    reviewCount: 99,
-    onSale: true,
-    originalPrice: "4",
-    thumbnails: [],
-    isNew: true,
-    rating: "",
-  },
-];
-
-const activeColor = "";
-const isFavorited = "";
+import { useRouter } from "next/navigation";
+import { useCart } from "@/app/context/CartContext";
+import { products } from "@/app/mock_data";
 
 export default function Product() {
   const params = useParams();
   const [quantity, setQuantity] = useState(1);
   const product = products.find((item) => item?.id === params.id);
+  //
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+  const [activeColor, setActiveColor] = useState("blue");
+  const [isFavorited, setIsFavorited] = useState(false);
+  const { addToCart } = useCart();
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(
+        {
+          id: Number(product.id),
+          name: product.name,
+          price: String(product.price),
+          imageUrl: product.imageUrl,
+        },
+        quantity
+      );
+    }
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
+    router.push("/checkout");
+  };
+
+  const toggleFavorite = () => {
+    setIsFavorited(!isFavorited);
+  };
+
+  // if (isLoading) {
+  //   return (
+  //     <div className="container mx-auto px-4 py-12 flex justify-center">
+  //       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+  //     </div>
+  //   );
+  // }
+
+  // if (error || !product) {
+  //   return (
+  //     <div className="container mx-auto px-4 py-12">
+  //       <div className="text-center bg-white p-6 rounded-lg shadow">
+  //         <h2 className="text-xl font-bold text-red-500 mb-2">
+  //           Product Not Found
+  //         </h2>
+  //         <p className="mb-4">
+  //           {`The product you're looking for doesn't exist or has been removed.`}
+  //         </p>
+  //         <Button onClick={() => router.push("/products")}>
+  //           Return to Products
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
@@ -115,7 +123,7 @@ export default function Product() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{"Halio"}</BreadcrumbPage>
+            <BreadcrumbPage>{product?.name}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -144,9 +152,9 @@ export default function Product() {
               <div className="mb-4">
                 <span className="text-2xl font-bold">${product?.price}</span>
                 <span className="text-gray-500">/ unit</span>
-                {product?.onSale && product?.originalPrice && (
+                {product?.onSale && product.originalPrice && (
                   <span className="text-gray-500 text-sm line-through ml-2">
-                    ${product?.originalPrice}
+                    ${product.originalPrice}
                   </span>
                 )}
               </div>
@@ -168,38 +176,43 @@ export default function Product() {
               <div className="flex space-x-3">
                 <button
                   className={`w-8 h-8 rounded-full bg-black ${
-                    activeColor && activeColor === "black"
+                    activeColor === "black"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  onClick={() => setActiveColor("black")}
                 ></button>
                 <button
                   className={`w-8 h-8 rounded-full bg-white ${
-                    activeColor && activeColor === "white"
+                    activeColor === "white"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  onClick={() => setActiveColor("white")}
                 ></button>
                 <button
                   className={`w-8 h-8 rounded-full bg-gray-500 ${
-                    activeColor && activeColor === "gray"
+                    activeColor === "gray"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  onClick={() => setActiveColor("gray")}
                 ></button>
                 <button
                   className={`w-8 h-8 rounded-full bg-red-500 ${
-                    activeColor && activeColor === "red"
+                    activeColor === "red"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  onClick={() => setActiveColor("red")}
                 ></button>
                 <button
                   className={`w-8 h-8 rounded-full bg-blue-500 ${
-                    activeColor && activeColor === "blue"
+                    activeColor === "blue"
                       ? "border-2 border-blue-600"
                       : "border-2 border-gray-300"
                   } focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  onClick={() => setActiveColor("blue")}
                 ></button>
               </div>
             </div>
@@ -212,13 +225,14 @@ export default function Product() {
                   variant="outline"
                   size="icon"
                   className="w-10 h-10 rounded-l-lg"
+                  onClick={decreaseQuantity}
                 >
                   <Minus className="h-4 w-4" />
                 </Button>
                 <Input
                   type="number"
                   value={quantity}
-                  onChange={(e) => setQuantity(Number(e.target.value))}
+                  onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
                   min="1"
                   className="w-16 h-10 rounded-none text-center"
                 />
@@ -226,6 +240,7 @@ export default function Product() {
                   variant="outline"
                   size="icon"
                   className="w-10 h-10 rounded-r-lg"
+                  onClick={increaseQuantity}
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
@@ -234,13 +249,20 @@ export default function Product() {
 
             {/* Add to Cart and Buy Now buttons */}
             <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 mb-6">
-              <Button className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center">
+              <Button
+                onClick={handleAddToCart}
+                className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center"
+              >
                 <ShoppingCart className="mr-2 h-5 w-5" /> Add to Cart
               </Button>
-              <Button className="flex-1 bg-emerald-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-emerald-700 transition-colors">
+              <Button
+                onClick={handleBuyNow}
+                className="flex-1 bg-emerald-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+              >
                 Buy Now
               </Button>
               <Button
+                onClick={toggleFavorite}
                 variant="outline"
                 size="icon"
                 className={`rounded-full ${
@@ -376,7 +398,7 @@ export default function Product() {
                       Verified Purchase • 1 month ago
                     </p>
                     <p className="text-gray-700">
-                      {` Very good product for the price. It's comfortable and
+                      {`  Very good product for the price. It's comfortable and
                       durable. The only reason I'm not giving 5 stars is because
                       the color was slightly different than what was shown in
                       the pictures.`}
@@ -408,10 +430,10 @@ export default function Product() {
                 </div>
                 <div>
                   <h4 className="font-medium text-lg mb-2">
-                    {`Can I return this if I'm not satisfied?`}
+                    {` Can I return this if I'm not satisfied?`}
                   </h4>
                   <p className="text-gray-600">
-                    {`  Absolutely! We offer a 30-day return policy on all our
+                    {` Absolutely! We offer a 30-day return policy on all our
                     products. If you're not completely satisfied, you can return
                     it for a full refund or exchange.`}
                   </p>
@@ -427,17 +449,17 @@ export default function Product() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products?.map((relatedProduct) => (
               <ProductCard
-                key={relatedProduct?.id}
-                id={relatedProduct?.id}
-                name={relatedProduct?.name}
-                description={relatedProduct?.description}
-                price={relatedProduct?.price}
-                imageUrl={relatedProduct?.imageUrl}
-                rating={relatedProduct?.rating}
-                reviewCount={relatedProduct?.reviewCount}
-                isNew={relatedProduct?.isNew}
-                onSale={relatedProduct?.onSale}
-                originalPrice={relatedProduct?.originalPrice}
+                key={relatedProduct.id}
+                id={relatedProduct.id}
+                name={relatedProduct.name}
+                description={relatedProduct.description}
+                price={relatedProduct.price}
+                imageUrl={relatedProduct.imageUrl}
+                rating={relatedProduct.rating}
+                reviewCount={relatedProduct.reviewCount}
+                isNew={relatedProduct.isNew}
+                onSale={relatedProduct.onSale}
+                originalPrice={relatedProduct.originalPrice}
               />
             ))}
           </div>

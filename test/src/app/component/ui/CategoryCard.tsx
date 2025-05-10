@@ -15,8 +15,8 @@ export default function CategoryCard({ name, imageUrl }: CategoryCardProps) {
             src={imageUrl}
             alt={name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-            width={300}
-            height={367}
+            width={1000}
+            height={660}
           />
           <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-opacity"></div>
           <h3 className="absolute bottom-4 left-4 text-white font-semibold text-lg">

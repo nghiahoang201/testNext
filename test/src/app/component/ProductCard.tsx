@@ -5,6 +5,7 @@ import { Heart, ShoppingCart } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import Image from "next/image";
+import { useCart } from "../context/CartContext";
 
 interface ProductCardProps {
   id: number | string;
@@ -31,10 +32,17 @@ export default function ProductCard({
   originalPrice = null,
 }: ProductCardProps) {
   const [isFavorited, setIsFavorited] = useState(false);
+  const { addToCart } = useCart();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    addToCart({
+      id: typeof id === "string" ? parseInt(id, 10) : id,
+      name,
+      price: String(price),
+      imageUrl,
+    });
   };
 
   const toggleFavorite = (e: React.MouseEvent) => {
@@ -48,7 +56,7 @@ export default function ProductCard({
       <div className="relative aspect-square bg-gray-100">
         <Link href={`/products/${id}`}>
           <Image
-            src={imageUrl || "/fallback.jpg"}
+            src={imageUrl}
             alt={name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             width={450}

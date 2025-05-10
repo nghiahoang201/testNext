@@ -5,6 +5,9 @@ import { Button } from "./component/ui/button";
 import CategoryCard from "./component/ui/CategoryCard";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import StarRating from "./component/ui/StarRating";
+import ProductCard from "./component/ProductCard";
+import { products } from "./mock_data";
 
 const categories = [
   {
@@ -66,7 +69,7 @@ export default function Home() {
                 src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
                 alt="Premium Products Showcase"
                 width={1000}
-                height={667}
+                height={660}
                 className="rounded-lg shadow-lg w-full h-auto object-cover"
               />
             </div>
@@ -105,6 +108,36 @@ export default function Home() {
               View All <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
+
+          {false ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            </div>
+          ) : false ? (
+            <div className="text-center py-12">
+              <p className="text-red-500">
+                Failed to load products. Please try again later.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {products?.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  id={product.id}
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                  imageUrl={product.imageUrl}
+                  rating={product.rating || "0"}
+                  reviewCount={product.reviewCount || 0}
+                  isNew={product.isNew ?? undefined}
+                  onSale={product.onSale ?? undefined}
+                  originalPrice={product.originalPrice ?? undefined}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -139,10 +172,10 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gray-50 p-6 rounded-lg">
               <div className="flex text-yellow-400 mb-4">
-                {/* <StarRating rating={5} size="lg" /> */}
+                <StarRating rating={5} size="lg" />
               </div>
               <p className="text-gray-600 mb-4">
-                {` "The quality of the products exceeds my expectations. Fast
+                {`"The quality of the products exceeds my expectations. Fast
                 shipping and excellent customer service!"`}
               </p>
               <div className="flex items-center">
@@ -151,7 +184,7 @@ export default function Home() {
                     src="https://randomuser.me/api/portraits/women/12.jpg"
                     alt="Customer"
                     width={1000}
-                    height={667}
+                    height={660}
                   />
                 </div>
                 <div>
@@ -163,7 +196,7 @@ export default function Home() {
 
             <div className="bg-gray-50 p-6 rounded-lg">
               <div className="flex text-yellow-400 mb-4">
-                {/* <StarRating rating={5} size="lg" /> */}
+                <StarRating rating={5} size="lg" />
               </div>
               <p className="text-gray-600 mb-4">
                 {` "I love how easy it is to navigate the website and find exactly
@@ -175,7 +208,7 @@ export default function Home() {
                     src="https://randomuser.me/api/portraits/men/32.jpg"
                     alt="Customer"
                     width={1000}
-                    height={667}
+                    height={660}
                   />
                 </div>
                 <div>
@@ -187,10 +220,10 @@ export default function Home() {
 
             <div className="bg-gray-50 p-6 rounded-lg">
               <div className="flex text-yellow-400 mb-4">
-                {/* <StarRating rating={4.5} size="lg" /> */}
+                <StarRating rating={4.5} size="lg" />
               </div>
               <p className="text-gray-600 mb-4">
-                {` "The checkout process was smooth and hassle-free. My items
+                {`"The checkout process was smooth and hassle-free. My items
                 arrived earlier than expected and in perfect condition."`}
               </p>
               <div className="flex items-center">
@@ -199,7 +232,7 @@ export default function Home() {
                     src="https://randomuser.me/api/portraits/women/45.jpg"
                     alt="Customer"
                     width={1000}
-                    height={667}
+                    height={660}
                   />
                 </div>
                 <div>
