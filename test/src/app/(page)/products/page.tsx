@@ -8,22 +8,22 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "../component/ui/breadcrumb";
-import { Button } from "../component/ui/button";
-import { Checkbox } from "../component/ui/checkbox";
-import { Label } from "../component/ui/label";
-import { RadioGroup, RadioGroupItem } from "../component/ui/radio-group";
+} from "../../component/ui/breadcrumb";
+import { Button } from "../../component/ui/button";
+import { Checkbox } from "../../component/ui/checkbox";
+import { Label } from "../../component/ui/label";
+import { RadioGroup, RadioGroupItem } from "../../component/ui/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../component/ui/select";
-import ProductCard from "../component/ProductCard";
+} from "../../component/ui/select";
+import ProductCard from "../../component/ProductCard";
 import { useEffect, useState } from "react";
-import StarRating from "../component/ui/StarRating";
-import { products } from "../mock_data";
+import StarRating from "../../component/ui/StarRating";
+import { products } from "../../mock_data";
 
 export default function Products() {
   const [location, setLocation] = useState<string>("");
