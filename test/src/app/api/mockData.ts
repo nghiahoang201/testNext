@@ -1,18 +1,3 @@
-export interface ProductData {
-  id: string | number;
-  name: string;
-  category: string;
-  imageUrl: string;
-  description: string;
-  price: string | number;
-  rating: string | null;
-  reviewCount: number;
-  isNew?: boolean;
-  onSale?: boolean;
-  originalPrice?: string | null;
-  thumbnails?: string[];
-}
-
 export const products = [
   {
     id: "1",

@@ -8,14 +8,6 @@ import {
   ShieldCheck,
   Truck,
 } from "lucide-react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "../component/ui/breadcrumb";
 
 import React, { useEffect, useState } from "react";
 import {
@@ -25,19 +17,27 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../component/ui/form";
-import { Input } from "../component/ui/input";
-import { insertOrderSchema } from "../shared/schema";
+} from "@/app/component/ui/form";
+import { Input } from "@/app/component/ui/input";
+import { insertOrderSchema } from "@/app/shared/schema";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RadioGroup, RadioGroupItem } from "../component/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "@/app/component/ui/radio-group";
 import Image from "next/image";
-import { useCart } from "../context/CartContext";
-import { Checkbox } from "../component/ui/checkbox";
-import { Button } from "../component/ui/button";
+import { useCart } from "@/app/context/CartContext";
+import { Checkbox } from "@/app/component/ui/checkbox";
+import { Button } from "@/app/component/ui/button";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/app/component/ui/breadcrumb";
 
 // Extended validation schema for the checkout form
 const checkoutFormSchema = insertOrderSchema.extend({
